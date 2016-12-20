@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <h1>{{ site }} - {{ query_id }}</h1>
+  <li><h3>目前狀態: {{ state }}</h3></li>
+  <li><h3>資料登入時間: {{ login_date }}</h3></li>
+  <li><h3>負責營業所: {{ establishment }}</h3></li>
+</div>
+{% endblock %}
