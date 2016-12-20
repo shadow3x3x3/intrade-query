@@ -3,8 +3,10 @@ from django.http import HttpResponse
 from django.template import loader
 
 from .models import BlackcatPackage
+from .extra.package_manager import PackageManager
 
 packages_id = set()
+pm = PackageManager()
 
 def index(request):
     return render(request, 'index.html')
@@ -31,18 +33,14 @@ def query(request):
     return render(request, 'query.html', context)
 
 def package(request):
-    
     if request.method == 'POST':
         query_id = request.POST['query_id']
         site = request.POST['site']
-        with open(file_path, 'a') as file:
-            file.write('\n{}'.format(query_id))
+        pm.add(query_id)
+        pm.update()
         return render(request, 'package.html', {'new_id': query_id})
     elif request.method == 'GET':
-        with open(file_path) as file:
-            for line in file:
-                packages_id.add(line)
-        context = { 'packages': packages_id }
-        return render(request, 'package.html', context)
+        pm.update()
+        return render(request, 'package.html', { 'packages': pm.package_ids })
 
 
