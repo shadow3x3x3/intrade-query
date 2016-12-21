@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
@@ -34,11 +36,13 @@ def query(request):
 
 def package(request):
     if request.method == 'POST':
+        print(request.POST)
         query_id = request.POST['query_id']
-        site = request.POST['site']
+        # site = request.POST['site']
         pm.add(query_id)
         pm.update()
-        return render(request, 'package.html', {'new_id': query_id})
+        package_json = json.dumps({ 'packages': query_id })
+        return HttpResponse(package_json, content_type='application/json')
     elif request.method == 'GET':
         pm.update()
         return render(request, 'package.html', { 'packages': pm.package_ids })

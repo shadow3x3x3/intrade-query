@@ -1,9 +1,9 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 <div class="container-fluid">
   <h1>新增查詢包裹</h1>
-  <form role="form" action="/packages" method="post">{% csrf_token %}
+  <form role="form" id="add-new-form">{% csrf_token %}
     <div class="form-group">
       <label for="packageID">包裹ID</label>
       <input type="text" class="form-control" id="queryIdInput" name="query_id" placeholder="輸入包裹ID">
@@ -23,18 +23,15 @@
         </label>
       </div>
     </div>
-    <button type="submit" class="btn btn-default">新增</button>
+    <button type="submit" id="add" class="btn btn-default">新增</button>
   </form>
 </div>
 
 <div class="container">
   <h2>包裹總覽</h2>
-  <table class="table table-hover" id='packages'>
+  <table class="table table-hover" id='packages-list'>
     <tr>
       <th>包裹ID</th>
-    </tr>
-    <tr>
-      <td>test</td>
     </tr>
     {% for package in packages %}
     <tr>
@@ -44,4 +41,5 @@
   </table>
 </div>
 
+<script src="{{ STATIC_URL }}js/package.js"></script>
 {% endblock %}
