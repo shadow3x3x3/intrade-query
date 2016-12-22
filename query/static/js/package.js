@@ -11,7 +11,9 @@ $(function() {
       type: "POST",
       data: {'query_id': newId},
       success: function(json) {
-        insertTable(json.packages)
+        if(json.packages != "NOEXIST") {
+          insertTable(json.packages)
+        }
       },
       error: function(xhr, errmsg, err) {
         console.log(xhr.status + ": " + xhr.responseText)

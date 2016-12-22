@@ -8,8 +8,16 @@ class PackageManager:
         return self.package_ids
 
     def add(self, id):
+        old_sizes = len(self.package_ids)
         self.package_ids.add(id)
-        self._write(id)
+        new_sizes = len(self.package_ids)
+
+        if old_sizes != new_sizes:
+            self._write(id)
+            return True
+        else:
+            return False
+
 
     def update(self):
         self.package_ids.clear()

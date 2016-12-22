@@ -48,9 +48,11 @@ def package(request):
         print(request.POST)
         query_id = request.POST['query_id']
         # site = request.POST['site']
-        pm.add(query_id)
-        pm.update()
-        package_json = json.dumps({ 'packages': query_id })
+        if pm.add(query_id):
+            # pm.update()
+            package_json = json.dumps({ 'packages': query_id })
+        else:
+            package_json = json.dumps({ 'packages': 'NOEXIST' })
         return HttpResponse(package_json, content_type='application/json')
     elif request.method == 'GET':
         pm.update()
