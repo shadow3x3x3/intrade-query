@@ -21,3 +21,17 @@ class ChinesePackage(models.Model):
         return '{}: {} at {}'.format(
             self.chinese_id, self.state, self.login_date
         )
+
+class IntradePackage(models.Model):
+    query_id = models.CharField(max_length=100, primary_key=True)
+    blackcat_id = models.ForeignKey('BlackcatPackage',
+        on_delete=models.CASCADE, blank=True, default=None, null=True
+    )
+    chinese_id = models.ForeignKey('ChinesePackage',
+        on_delete=models.CASCADE, blank=True, default=None, null=True
+    )
+
+    def __str__(self):
+        return '{}: Blackcat = {} and Chinese = {}'.format(
+            self.query_id, self.blackcat_id, self.chinese_id
+        )
