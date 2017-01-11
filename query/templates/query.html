@@ -2,10 +2,17 @@
 
 {% block content %}
 <div class="container-fluid">
-  <h1>{{ site }} - {{ query_id }}</h1>
-  <li><h3>目前狀態: {{ state }}</h3></li>
-  <li><h3>資料登入時間: {{ login_date }}</h3></li>
-  <li><h3>負責營業所: {{ establishment }}</h3></li>
+  {% if chinese  %}
+  <li><h3>目前狀態: {{ chinese.state }}</h3></li>
+  <li><h3>資料登入時間: {{ chinese.login_date }}</h3></li>
+  <li><h3>負責營業所: {{ chinese.location }}</h3></li>
+  {% endif  %}
+
+  {% if blackcat  %}
+  <li><h3>目前狀態: {{ blackcat.state }}</h3></li>
+  <li><h3>資料登入時間: {{ blackcat.login_date }}</h3></li>
+  <li><h3>負責營業所: {{ blackcat.establishment }}</h3></li>
+  {% endif  %}
   <input type="button" class="btn btn-default" value="上一頁" onclick="history.back()">
 </div>
 {% endblock %}
