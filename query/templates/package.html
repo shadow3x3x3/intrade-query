@@ -36,10 +36,14 @@
   <table class="table table-hover" id='packages-list'>
     <tr>
       <th>包裹ID</th>
+      <th>黑貓宅急便</th>
+      <th>中國郵政</th>
     </tr>
     {% for package in packages %}
     <tr>
-      <td>{{ package }}</td>
+      <td>{{ package.query }}</td>
+      <td>{{ package.blackcat }}</td>
+      <td>{{ package.chinese }}</td>
     </tr>
     {% endfor %}
   </table>

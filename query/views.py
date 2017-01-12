@@ -41,7 +41,6 @@ def package(request):
     if request.method == 'POST':
         print(request.POST)
         query_id = request.POST['query_id']
-        # site = request.POST['site']
         if pm.add(query_id):
             package_json = json.dumps({ 'packages': query_id })
         else:
@@ -49,7 +48,9 @@ def package(request):
         return HttpResponse(package_json, content_type='application/json')
     elif request.method == 'GET':
         pm.update()
-        return render(request, 'package.html', { 'packages': pm.package_ids })
+        return render(request, 'package.html', retrieve_ids())
+
+## functions
 
 def retrieve_package_info(context, intrade_package):
     print(intrade_package.chinese_id)
@@ -68,3 +69,21 @@ def retrieve_package_info(context, intrade_package):
             'establishment': blackcat_package.establishment
         }
     return context
+
+def retrieve_ids():
+    context = { 'packages': [] }
+    for package in IntradePackage.objects.all():
+        context['packages'].append(retrieve_package_ids(package))
+    return context
+
+def retrieve_package_ids(package):
+    if package.blackcat_id:
+        blackcat_id = package.blackcat_id.blackcat_id
+    if package.chinese_id:
+        chinese_id = package.chinese_id.chinese_id
+
+    return {
+        'query': package.query_id,
+        'blackcat': package.blackcat_id,
+        'chinese': package.chinese_id
+    }
