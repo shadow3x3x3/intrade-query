@@ -24,10 +24,10 @@ class ChinesePackage(models.Model):
 
 class IntradePackage(models.Model):
     query_id = models.CharField(max_length=100, primary_key=True)
-    blackcat_id = models.ForeignKey('BlackcatPackage',
+    blackcat = models.ForeignKey('BlackcatPackage',
         on_delete=models.CASCADE, blank=True, default=None, null=True
     )
-    chinese_id = models.ForeignKey('ChinesePackage',
+    chinese = models.ForeignKey('ChinesePackage',
         on_delete=models.CASCADE, blank=True, default=None, null=True
     )
 
