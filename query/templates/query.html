@@ -5,14 +5,12 @@
   {% if chinese  %}
   <li><h3>目前狀態: {{ chinese.state }}</h3></li>
   <li><h3>資料登入時間: {{ chinese.login_date }}</h3></li>
-  <li><h3>負責營業所: {{ chinese.location }}</h3></li>
-  {% endif  %}
+  {% endif %}
 
   {% if blackcat  %}
   <li><h3>目前狀態: {{ blackcat.state }}</h3></li>
   <li><h3>資料登入時間: {{ blackcat.login_date }}</h3></li>
-  <li><h3>負責營業所: {{ blackcat.establishment }}</h3></li>
-  {% endif  %}
+  {% endif %}
   <input type="button" class="btn btn-default" value="上一頁" onclick="history.back()">
 </div>
 {% endblock %}
