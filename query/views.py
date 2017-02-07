@@ -53,16 +53,16 @@ def package(request):
 ## functions
 
 def retrieve_package_info(context, intrade_package):
-    print(intrade_package.chinese_id)
-    if intrade_package.chinese_id:
-        chinese_package = intrade_package.chinese_id
+    print(intrade_package.chinese)
+    if intrade_package.chinese:
+        chinese_package = intrade_package.chinese
         context['chinese'] = {
             'state': chinese_package.state,
             'login_date': chinese_package.login_date,
             'establishment': chinese_package.location
         }
-    if intrade_package.blackcat_id:
-        blackcat_package = intrade_package.blackcat_id
+    if intrade_package.blackcat:
+        blackcat_package = intrade_package.blackcat
         context['blackcat'] = {
             'state': blackcat_package.state,
             'login_date': blackcat_package.login_date,
