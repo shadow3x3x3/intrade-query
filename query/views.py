@@ -77,11 +77,6 @@ def retrieve_ids():
     return context
 
 def retrieve_package_ids(package):
-    if package.blackcat_id:
-        blackcat_id = package.blackcat_id.blackcat_id
-    if package.chinese_id:
-        chinese_id = package.chinese_id.chinese_id
-
     return {
         'query': package.query_id,
         'blackcat': package.blackcat_id,
