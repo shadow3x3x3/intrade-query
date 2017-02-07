@@ -28,6 +28,7 @@ $(function() {
     cell.innerHTML = id;
   }
 
+  // for django csrf token
   function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
