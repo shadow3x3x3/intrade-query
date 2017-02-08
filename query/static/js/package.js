@@ -33,8 +33,8 @@ $(function() {
     var cell1 = row.insertCell(1);
     var cell2 = row.insertCell(2);
     cell0.innerHTML = id_json.query_id;
-    cell1.innerHTML = id_json.blackcat_id;
-    cell2.innerHTML = id_json.chinese_id;
+    cell1.innerHTML = id_json.blackcat_id + ": None at None";
+    cell2.innerHTML = id_json.chinese_id + ": None at None";
   }
 
   // for django csrf token

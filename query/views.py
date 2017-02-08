@@ -76,7 +76,7 @@ def retrieve_package_info(context, intrade_package):
 def retrieve_ids():
     context = { 'packages': [] }
     for package in IntradePackage.objects.all():
-        context['packages'].append(retrieve_package_ids(package))
+        context['packages'].append(package)
     return context
 
 def retrieve_package_ids(package):
