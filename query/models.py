@@ -26,13 +26,16 @@ class IntradePackageManager(models.Manager):
     def create_intrade_package(
         self, query_id, blackcat_id, chinese_id):
 
-        # Creating blackcat and chinese empty package first
+        # Creating empty packages of blackcat and chinese first
         # try for duplicate key
         try:
             BlackcatPackage.objects.create(blackcat_id=blackcat_id)
+        except:
+            print('Creating empty blackcat package fails.')
+        try:
             ChinesePackage.objects.create(chinese_id=chinese_id)
         except:
-            print('Creating empty package fails.')
+            print('Creating empty chinese package fails.')
 
         intrade_package = self.create(
             query_id=query_id, blackcat_id=blackcat_id, chinese_id=chinese_id)
