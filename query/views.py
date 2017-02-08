@@ -7,7 +7,6 @@ from django.template import loader
 from django.core.exceptions import ObjectDoesNotExist
 
 from .models import BlackcatPackage, ChinesePackage, IntradePackage
-from .extra.package_manager import PackageManager
 
 SITE_NAMES = {
     'blackcat': '黑貓宅急便',
@@ -15,7 +14,6 @@ SITE_NAMES = {
 }
 
 packages_id = set()
-pm = PackageManager()
 
 def index(request):
     return render(request, 'index.html')
