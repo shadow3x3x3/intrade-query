@@ -5,14 +5,19 @@ $(function() {
   });
 
   function createNewId() {
-    var newId = $("#queryIdInput").val();
+    var package_info = {
+        query_id: $("#queryIdInput").val(),
+        blackcat_id: $("#blackcatIdInput").val(),
+        chinese_id: $("#chineseIdInput").val()
+    }
     $.ajax({
       url: "/packages",
       type: "POST",
-      data: {'query_id': newId},
-      success: function(json) {
-        if(json.packages != "NOEXIST") {
-          insertTable(json.packages)
+      datatype: "json",
+      data: package_info,
+      success: function(id_json) {
+        if(id_json.query_id != "NOEXIST") {
+          insertTable(id_json)
         }
       },
       error: function(xhr, errmsg, err) {
@@ -21,11 +26,15 @@ $(function() {
     });
   }
 
-  function insertTable(id) {
+  function insertTable(id_json) {
     var table = document.getElementById("packages-list");
     var row = table.insertRow(1);
-    var cell = row.insertCell(0);
-    cell.innerHTML = id;
+    var cell0 = row.insertCell(0);
+    var cell1 = row.insertCell(1);
+    var cell2 = row.insertCell(2);
+    cell0.innerHTML = id_json.query_id;
+    cell1.innerHTML = id_json.blackcat_id;
+    cell2.innerHTML = id_json.chinese_id;
   }
 
   // for django csrf token
