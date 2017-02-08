@@ -82,10 +82,18 @@ def retrieve_ids():
     return context
 
 def retrieve_package_ids(package):
+    if package.blackcat_id:
+        blackcat_id = package.blackcat_id
+    else:
+        blackcat_id = ''
+    if package.chinese_id:
+        chinese_id = package.chinese_id
+    else:
+        chinese_id = ''
     return {
         'query_id': package.query_id,
-        'blackcat_id': package.blackcat_id,
-        'chinese_id': package.chinese_id
+        'blackcat_id': blackcat_id,
+        'chinese_id': chinese_id
     }
 
 def add_new_package(new_package):
